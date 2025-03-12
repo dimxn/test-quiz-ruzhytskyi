@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css"
+    />
+
     <title>Test Quiz</title>
   </head>
   <body>
@@ -17,7 +22,45 @@
         </div>
       </div>
     </main>
-    <script src="js/index.js"></script>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <h2>Реєстрація</h2>
+        <p>
+          Дякуємо що пройшли наше опитування, заповніть цю форму аби з вами
+          звʼязалися.
+        </p>
+        <form id="registrationForm">
+          <input
+            type="text"
+            class="registrationForm__input"
+            id="name"
+            name="name"
+            placeholder="Імʼя"
+            required
+          />
+          <input
+            type="email"
+            class="registrationForm__input"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="tel"
+            class="registrationForm__input"
+            id="phone"
+            name="phone"
+            required
+          />
+          <span id="successMessage" style="display: none; color: green"
+            >Дякуємо за участь! 😊</span
+          >
+          <button type="submit" class="quiz__answer">Відправити</button>
+        </form>
+      </div>
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

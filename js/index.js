@@ -5,6 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const quizQuestion = document.getElementById("question");
   const answersContainer = document.getElementById("answers");
   const footer = document.querySelector(".footer");
+  const modal = document.getElementById("modal");
+  const registrationForm = document.getElementById("registrationForm");
+  const phoneInput = document.getElementById("phone");
+  const successMessage = document.getElementById("successMessage");
+
+  const iti = window.intlTelInput(phoneInput, {
+    initialCountry: "ua",
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  });
 
   fetch("../data/questions.json")
     .then((response) => response.json())
@@ -35,7 +45,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentQuestionIndex < questions.length) {
       displayQuestion();
     } else {
-      console.log("Всі запитання пройдено", answers);
+      modal.style.display = "block";
     }
   }
+
+  registrationForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      phone: iti.getNumber(),
+      answers: answers,
+    };
+
+    fetch("https://httpbin.org/post", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Успішно відправлено:", data);
+        successMessage.style.display = "block";
+      })
+      .catch((error) => {
+        console.error("Помилка відправки:", error);
+      });
+  });
 });
