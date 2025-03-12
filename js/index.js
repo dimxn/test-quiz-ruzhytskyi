@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
   });
 
-  fetch("../data/questions.json")
+  fetch("/data/questions.json")
     .then((response) => response.json())
     .then((data) => {
       questions = data.questions;
