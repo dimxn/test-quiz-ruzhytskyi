@@ -14,9 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <h2>Реєстрація</h2>
       <p>Дякуємо що пройшли наше опитування, заповніть цю форму аби з вами звʼязалися.</p>
       <form id="registrationForm">
-        <input type="text" class="registrationForm__input" id="name" name="name" placeholder="Імʼя" required />
-        <input type="email" class="registrationForm__input" id="email" name="email" placeholder="Email" required />
-        <input type="tel" class="registrationForm__input" id="phone" name="phone" required />
+        <input type="text" class="registrationForm__input" id="name" name="name" placeholder="Імʼя"  />
+        <input type="email" class="registrationForm__input" id="email" name="email" placeholder="Email"  />
+        <input type="tel" class="registrationForm__input" id="phone" name="phone"  />
+        <span id="validationMessage" style="display: none; color: red;"></span>
         <span id="successMessage" style="display: none; color: green">Дякуємо за участь! 😊</span>
         <button type="submit" class="quiz__answer">Відправити</button>
       </form>
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const registrationForm = modal.querySelector("#registrationForm");
   const phoneInput = modal.querySelector("#phone");
   const successMessage = modal.querySelector("#successMessage");
+  const validationMessage = modal.querySelector("#validationMessage");
 
   const iti = window.intlTelInput(phoneInput, {
     initialCountry: "ua",
@@ -70,10 +72,37 @@ document.addEventListener("DOMContentLoaded", () => {
   registrationForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = iti.getNumber();
+
+    // Валідація форми
+    if (!name) {
+      validationMessage.innerText = "Будь ласка, введіть ваше ім'я.";
+      validationMessage.style.display = "block";
+      return;
+    }
+
+    if (!email || !validateEmail(email)) {
+      validationMessage.innerText =
+        "Будь ласка, введіть дійсну електронну адресу.";
+      validationMessage.style.display = "block";
+      return;
+    }
+
+    if (!iti.isValidNumber()) {
+      validationMessage.innerText =
+        "Будь ласка, введіть дійсний номер телефону.";
+      validationMessage.style.display = "block";
+      return;
+    }
+
+    validationMessage.style.display = "none";
+
     const formData = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      phone: iti.getNumber(),
+      name: name,
+      email: email,
+      phone: phone,
       answers: answers,
     };
 
@@ -96,4 +125,9 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Помилка відправки:", error);
       });
   });
+
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  }
 });
