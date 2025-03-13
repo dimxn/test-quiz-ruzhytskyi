@@ -14,7 +14,7 @@ This project is a web application for conducting quizzes. It allows users to ans
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/test-quiz-ruzhytskyi.git
+   git clone https://github.com/dimxn/test-quiz-ruzhytskyi.git
    ```
 
 2. Navigate to the project directory:
