@@ -23,11 +23,11 @@ This project is a web application for conducting quizzes. It allows users to ans
    cd test-quiz-ruzhytskyi
    ```
 
-3. Open [index.html](http://_vscodecontentref_/1) in your browser.
+3. Open [index.html](./index.html) in your browser.
 
 ## Usage
 
-1. Open [index.html](http://_vscodecontentref_/2) in your browser.
+1. Open [index.html](./index.html) in your browser.
 2. Answer the questions by clicking on the appropriate buttons.
 3. After completing the quiz, a modal window with a registration form will appear.
 4. Fill out the registration form and click the "Submit" button.
@@ -35,10 +35,10 @@ This project is a web application for conducting quizzes. It allows users to ans
 
 ## Project Structure
 
-- [index.html](http://_vscodecontentref_/3): Contains the main structure of the page and links to the CSS and JavaScript files.
-- [index.css](http://_vscodecontentref_/4): Contains styles for the page, including responsive styles for different screen sizes.
-- [index.js](http://_vscodecontentref_/5): Contains the logic for loading questions from the JSON file, displaying questions, handling answers, and user registration.
-- [questions.json](http://_vscodecontentref_/6): Contains the quiz questions in JSON format.
+- [index.html](./index.html): Contains the main structure of the page and links to the CSS and JavaScript files.
+- [index.css](./css/index.css): Contains styles for the page, including responsive styles for different screen sizes.
+- [index.js](./js/index.js): Contains the logic for loading questions from the JSON file, displaying questions, handling answers, and user registration.
+- [questions.json](./data/questions.json): Contains the quiz questions in JSON format.
 
 ## Responsiveness
 
